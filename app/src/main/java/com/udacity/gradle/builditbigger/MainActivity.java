@@ -1,21 +1,38 @@
 package com.udacity.gradle.builditbigger;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.Jokes;
+import com.example.jokelibary.jokeActivity;
 
 
 public class MainActivity extends AppCompatActivity {
+
+    Button tellJokeButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        tellJokeButton = (Button) findViewById(R.id.tellJoke);
+        tellJokeButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Jokes myJoke = new Jokes();
+                Intent intent = new Intent(MainActivity.this, jokeActivity.class);
+                intent.putExtra(jokeActivity.JOKE_INTENT_TAG, myJoke.getJoke());
+                startActivity(intent);
+            }
+
+        });
     }
 
 
@@ -40,11 +57,5 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-    public void tellJoke(View view) {
-        Jokes myJoke = new Jokes();
-        Toast.makeText(this, myJoke.getJoke(), Toast.LENGTH_SHORT).show();
-    }
-
 
 }
