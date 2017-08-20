@@ -1,4 +1,4 @@
-package com.example.Admin.myapplication.backend;
+package com.example.admin.myapplication.backend.myApi;
 
 /**
  * The object model for the data we are sending through endpoints
